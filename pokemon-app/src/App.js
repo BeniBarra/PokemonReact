@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import PokemonHeader from './components/PokemonHeader'
+import PokemonCard from './components/PokemonCards';
+import SearchBar from './components/SearchBar';
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//process.env not working, debugg another time
+class App extends React.Component {
+  getPokemon151 = async (e) => {
+    e.preventDefault();
+    console.log(`${process.env.REACT_APP_GET_POKEMON}`);
+    const pokemonArr = await axios.get(process.env.REACT_APP_GET_POKEMON);
+    console.log(pokemonArr);
+  }
+
+  render() {
+    return (
+      <>
+        <PokemonHeader/>
+        <SearchBar getPokemon151={this.getPokemon151}/>
+        <PokemonCard/>
+        <button id='test-button' onClick={this.getPokemon151}>Submit</button>
+      </>
+    );
+  }
 }
 
 export default App;
