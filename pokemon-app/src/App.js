@@ -5,13 +5,28 @@ import PokemonCard from './components/PokemonCards';
 import SearchBar from './components/SearchBar';
 import axios from 'axios';
 
+//const axios = require('axios');
+
 //process.env not working, debugg another time
 class App extends React.Component {
-  getPokemon151 = async (e) => {
-    e.preventDefault();
-    console.log(`${process.env.REACT_APP_GET_POKEMON}`);
-    const pokemonArr = await axios.get(process.env.REACT_APP_GET_POKEMON);
-    console.log(pokemonArr);
+
+  constructor(props) {
+    super(props); 
+    this.state = {
+      pokemonArr : []
+    }
+}
+
+  componentDidMount = async () => {
+    const pokemon151 = await axios.get(process.env.REACT_APP_GET_151);
+    this.setState({
+      pokemonArr : pokemon151.data
+    })
+    console.log(pokemon151.data);
+  }
+
+  getPokemon151 = async () => {
+    console.log(this.state.pokemonArr);
   }
 
   render() {
