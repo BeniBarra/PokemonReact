@@ -10,19 +10,23 @@ class PokemonCard extends React.Component {
     }
 
     handleOnClick = (e) => {
-        e.preventDefulat();
+        e.preventDefault();
         console.log(e.target.value);
+        console.log(this.props.pokemonList);
     }
 
     render() {
         return (
             <>
                 <article className='pokemonCard'>
-                    <title id='pokemon-name'></title>
-                    <img id='pokemon-sprite' src=''/>
-                    <p id='pokemon-number'></p>
-                    <p id='pokemon-description'></p>
-                </article>
+                    <p>{this.props.name}</p>
+                    <img  src={this.props.sprites}/>
+                    <p >{'#' + this.props.id}</p>
+                    <p >{this.props.description}</p>
+                    <p >{'Stats: ' + this.props.stats}</p>
+                    {this.props.types.map(types => <p>{types.name}</p>)}
+                </article>               
+                <button id='test-button' onClick={this.handleOnClick}>Submit</button>
             </>
         );
     }
