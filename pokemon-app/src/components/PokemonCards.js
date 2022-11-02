@@ -23,8 +23,14 @@ class PokemonCard extends React.Component {
                     <img  src={this.props.sprites}/>
                     <p >{'#' + this.props.id}</p>
                     <p >{this.props.description}</p>
-                    <p >{'Stats: ' + this.props.stats}</p>
-                    {this.props.types.map(types => <p>{types.name}</p>)}
+                    <ul>STATS:
+                    {
+                        this.props.stats.map(stats => <option>{stats.name + ' : ' + stats.baseStat}</option>)
+                    }
+                    </ul>
+                    <ul>TYPE:
+                        {this.props.types.map(types => <option>{types.name}</option>)}
+                    </ul>
                 </article>               
                 <button id='test-button' onClick={this.handleOnClick}>Submit</button>
             </>
