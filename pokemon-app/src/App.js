@@ -19,11 +19,11 @@ class App extends React.Component {
 }
 
   componentDidMount = async () => {
-    const pokemon151 = await axios.get(process.env.REACT_APP_GET_151);
+    //const pokemon151 = await axios.get(process.env.REACT_APP_GET_151);
 
-    const pokemonList = await axios.get(process.env.REACT_APP_GET_LIST)
+    const pokemonList = await axios.get(process.env.REACT_APP_GET_151);
     this.setState({
-      pokemonNameArr : pokemon151.data,
+      //pokemonNameArr : pokemon151.data,
       pokemonObjArr : pokemonList.data
     });
     //console.log(pokemon151.data);
@@ -31,14 +31,14 @@ class App extends React.Component {
 
   getPokemon151 = async (e) => {
     e.preventDefault();
-    //console.log(this.state.pokemonArr);
+    console.log(this.state.pokemonArr);
   }
 
   render() {
     return (
       <>
         <PokemonHeader/>
-        <SearchBar getPokemon151={this.getPokemon151}/>
+        <SearchBar getPokemon151=''/>
         <div>
           {
             this.state.pokemonObjArr ? this.state.pokemonObjArr.map(pokemon => 
