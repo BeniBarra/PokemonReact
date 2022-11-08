@@ -9,6 +9,9 @@ class PokemonCard extends React.Component {
         }
     }
 
+    componentDidMount = () => {
+    }
+
     handleOnClick = (e) => {
         e.preventDefault();
         console.log(e.target.value);

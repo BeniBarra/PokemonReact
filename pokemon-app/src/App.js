@@ -3,50 +3,54 @@ import './App.css';
 import PokemonHeader from './components/PokemonHeader'
 import PokemonCard from './components/PokemonCards';
 import SearchBar from './components/SearchBar';
-//import axios from 'axios';
+import generateCache from './components/GenerateCache';
+import getPokemonObjs from './components/GetPokemonObjs';
+import getPokemonNames from './components/GetPokemonNames';
+// const generateCache =  require('./components/GenerateCache');
+// const getPokemonObjs = require('./components/GetPokemonObjs');
+// const getPokemonNames = require('./components/GetPokemonNames');
 
-const axios = require('axios');
-
-//process.env not working, debugg another time
 class App extends React.Component {
 
   constructor(props) {
     super(props); 
     this.state = {
       pokemonNameArr : [],
-      pokemonObjArr: []
+      pokemonObjArr: [],
+      cacheGenerated: false,
     }
 }
 
   componentDidMount = async () => {
-    //const pokemon151 = await axios.get(process.env.REACT_APP_GET_151);
-
-    const pokemonList = await axios.get(process.env.REACT_APP_GET_151);
+    generateCache();
     this.setState({
-      //pokemonNameArr : pokemon151.data,
-      pokemonObjArr : pokemonList.data
-    });
-    //console.log(pokemon151.data);
+      cacheGenerated: true,
+    })
   }
 
-  getPokemon151 = async (e) => {
-    e.preventDefault();
-    console.log(this.state.pokemonArr);
+  getPokemonCards = async () => {
+    if(this.state.cacheGenerated) {
+      let pokemonObjsData = await getPokemonObjs();
+      let pokemonNamesData = await getPokemonNames();
+
+      this.setState({
+        pokemonObjArr : pokemonObjsData,
+        pokeNameArr : pokemonNamesData,
+      })
+    } 
   }
 
   render() {
+    {this.getPokemonCards()}
+
     return (
       <>
         <PokemonHeader/>
         <SearchBar getPokemon151=''/>
-        <div>
           {
             this.state.pokemonObjArr ? this.state.pokemonObjArr.map(pokemon => 
             <PokemonCard name={pokemon.name} id={pokemon.id} description={pokemon.description} moves={pokemon.moves} sprites={pokemon.sprites} stats={pokemon.stats} types={pokemon.types}/> ) : <></>
           }
-        </div>
-
-
         <button id='test-button' onClick={this.getPokemon151}>Submit</button>
       </>
     );
