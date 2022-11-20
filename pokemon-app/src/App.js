@@ -41,12 +41,13 @@ class App extends React.Component {
   }
 
   render() {
+
     {this.getPokemonCards()}
 
     return (
       <>
         <PokemonHeader/>
-        <SearchBar getPokemon151=''/>
+        <SearchBar pokemonNames={this.state.pokemonNameArr}/>
           {
             this.state.pokemonObjArr ? this.state.pokemonObjArr.map(pokemon => 
             <PokemonCard name={pokemon.name} id={pokemon.id} description={pokemon.description} moves={pokemon.moves} sprites={pokemon.sprites} stats={pokemon.stats} types={pokemon.types}/> ) : <></>
