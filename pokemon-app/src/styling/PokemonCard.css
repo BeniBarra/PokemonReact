@@ -1,0 +1,47 @@
+.pokemonCard {
+    width: 35em;
+    height: fit-content;
+    background-color: rgb(124, 190, 93);
+    border: .5em solid rgb(255, 243, 68);
+}
+
+.pokemonName {
+    text-align: end;
+    font-size: 2em;
+    margin-top: .125em;
+    margin-right: .5em;
+    margin-bottom: .125em;
+    margin-left: 0;
+}
+
+.pokemonPictureDiv {
+    width: 25em;
+    height: 25em;
+}
+
+.pokemonPicture {
+    width: 100%;
+    height: 100%;
+}
+
+.pokemonNumber {
+
+}
+
+.pokemonDescription {
+    background-color: rgb(190, 175, 93);
+    width: 75%;
+    height: 2em;
+    margin-top: .125em;
+    margin-right: auto;
+    margin-bottom: .125em;
+    margin-left: auto;
+}
+
+.statList {
+
+}
+
+.typeList {
+
+}
